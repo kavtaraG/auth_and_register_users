@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <script>
+        const doRegister = async () => {
+            
+            // let id = document.getElementById('id').value;
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            let name = document.getElementById('name').value;
+            let surname = document.getElementById('surname').value;
+            let email = document.getElementById('email').value;
+            let userId = document.getElementById('userId').value;
+            const data = { username, password, name, surname, email, userId}
+            const response = await fetch('/api/v1/users', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    return data;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+                if(response.status == 'ok'){
+                    location='/'
+                }else{
+                  alert('Error')
+                }
+        }
+    </script>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div id="div">
+      <input id="username" placeholder="username"><br><br>
+      <input id="password" type="password" placeholder="password"><br><br>
+      <input id="name" placeholder="Name"><br><br>
+      <input id="surname" placeholder="Surname"><br><br>
+      <input id="email" placeholder="Email"><br><br>
+      <input id="userId" placeholder="userId"><br><br>
+      
+      <input onclick="doRegister()" value="Submit" type="button">
+      <input onclick="location='/'" value="Cancel" type="button">
+    </div>
+  </body>
+</html>

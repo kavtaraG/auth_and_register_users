@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <script>
+      const doLogin = async () => {
+      
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+        const data = { username, password };
+        const response = await fetch('/users/login', {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            return data;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+
+          if(response.status == 'ok'){
+            location = '/index'
+          }else{
+            alert('Error');
+          }
+      };
+
+      const doRegister = async () => {
+        location='/register'
+      }
+    </script>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    
+      <input id="username" placeholder="username"><br><br>
+      <input id="password" type="password" placeholder="password"><br><br>
+      <input type="button" onclick="doLogin()" value="Log In" >
+      <input type="button" onclick="doRegister()" value="Sing Up" >
+    
+  </body>
+</html>
