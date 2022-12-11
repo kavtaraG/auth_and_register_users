@@ -6,8 +6,11 @@
   </head>
   <body>
     <script>
+        
+      
         const doRegister = async () => {
-            
+         
+            // e.preventDefault();
             // let id = document.getElementById('id').value;
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
@@ -32,13 +35,18 @@
                 });
                 if(response.status == 'ok'){
                     location='/'
+                }else if(data == null || ''){
+                  alert('Please, feel empty fields')
                 }else{
                   alert('Error')
                 }
-        }
+
+
+        }        
     </script>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    
     <div id="div">
       <input id="username" placeholder="username"><br><br>
       <input id="password" type="password" placeholder="password"><br><br>
@@ -47,8 +55,9 @@
       <input id="email" placeholder="Email"><br><br>
       <input id="userId" placeholder="userId"><br><br>
       
-      <input onclick="doRegister()" value="Submit" type="button">
+      <input id="btn" onclick="doRegister()" value="Submit" type="button">
       <input onclick="location='/'" value="Cancel" type="button">
     </div>
+
   </body>
 </html>

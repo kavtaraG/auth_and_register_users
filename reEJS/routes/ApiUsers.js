@@ -4,6 +4,7 @@ var app = express.Router();
 const Users = require('../models/Users');
 const ErrorHandler = require('../utils/error');
 const { getUsers, addUsers } = require('../services/mongo-users');
+const { Model } = require('mongoose');
 
 // var users = [
 //     { username: 'dude', password: '123456'}
@@ -20,6 +21,7 @@ app.get('/', async (req, res, next) => {
 });
 
 app.post ('/', async (req, res, next) => {
+    
     try{
         console.log(req.body);
         var record = req.body;
@@ -27,7 +29,7 @@ app.post ('/', async (req, res, next) => {
         res.send({status: 'ok', msg: 'POST from routes/ApiUsers.js'});
     }catch(err){
         // console.log(`Error from post API: ${err}`);
-        next(err);
+        next(`Error: ${err}`);
     }
     
 });

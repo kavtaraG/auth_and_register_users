@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
   res.render('home', { title: 'Express'});
 });
 
+// router.get('/login', function(req, res, next) {
+//   res.render('index', { title: 'Express'});
+// });
+
 router.get('/register', async function(req, res, next) {
   res.render('register', { title: 'Sing Up', Data: await getUsers()});
 });
